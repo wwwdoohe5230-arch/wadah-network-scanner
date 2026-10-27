@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WADAH Network Scanner</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><span class="logo">W</span><div><b>WADAH</b><small>NETWORK SCANNER</small></div></div>
+    <nav><a class="active" href="#dashboard">◈ لوحة التحكم</a><a href="#scanner">⌕ فحص الشبكة</a><a href="#results">▤ التقارير</a><a href="#security">⬡ التوصيات الأمنية</a></nav>
+    <div class="side-note"><span class="dot"></span> محرك الفحص المحلي<br><small>نسخة تجريبية آمنة</small></div>
+  </aside>
+  <main id="dashboard">
+    <header><div><p class="eyebrow">مركز العمليات الأمنية</p><h1>لوحة فحص الشبكات</h1><p class="muted">راقب الخدمات المستجيبة واكتشف الإعدادات التي تستحق المراجعة.</p></div><div class="status"><span class="dot"></span> النظام جاهز</div></header>
+    <section class="stats"><article class="stat"><span>آخر هدف مفحوص</span><strong id="lastTarget">—</strong><small>عنوان الشبكة</small></article><article class="stat"><span>المنافذ التي تم اختبارها</span><strong id="checkedCount">0</strong><small>في آخر فحص</small></article><article class="stat"><span>المنافذ المفتوحة</span><strong id="openCount">0</strong><small>تحتاج إلى مراجعة</small></article><article class="stat"><span>حالة المحرك</span><strong class="good">جاهز</strong><small>عند تشغيل الخادم محلياً</small></article></section>
+    <section class="panel scanner" id="scanner"><div class="panel-head"><div><p class="eyebrow">بدء عملية جديدة</p><h2>فحص عنوان IP</h2></div><span class="badge">IPv4 خاص / محلي فقط</span></div>
+      <p class="muted">أدخل عنوان جهاز تملكه أو لديك تصريح بفحصه، مثل <code>192.168.1.1</code>.</p>
+      <form id="scanForm"><label for="target">عنوان IP المستهدف</label><div class="input-row"><input id="target" name="target" placeholder="192.168.1.1" required inputmode="decimal"><button id="scanBtn" type="submit">⌕ ابدأ الفحص</button></div><label class="check"><input type="checkbox" id="authorized" required> أؤكد أنني أملك هذا الجهاز أو لدي إذن بفحصه.</label></form>
+      <div id="message" class="message" hidden></div><div id="progress" class="progress" hidden><div></div></div>
+    </section>
+    <section class="panel" id="results"><div class="panel-head"><div><p class="eyebrow">نتائج الفحص</p><h2>المنافذ والخدمات</h2></div><div class="actions"><a class="button secondary" href="/api/report.json">تنزيل JSON</a><a class="button secondary" href="/api/report.pdf">تنزيل PDF</a></div></div>
+      <div class="table-wrap"><table><thead><tr><th>المنفذ</th><th>الخدمة</th><th>الحالة</th></tr></thead><tbody id="resultsBody"><tr><td colspan="3" class="empty">لا توجد نتائج بعد. ابدأ فحصاً لعرضها هنا.</td></tr></tbody></table></div>
+    </section>
+    <section class="panel" id="security"><div class="panel-head"><div><p class="eyebrow">خطوات مقترحة</p><h2>التوصيات الأمنية</h2></div></div><div id="recommendations" class="recommendations"><div class="rec"><span>✓</span><p>ستظهر التوصيات بعد إكمال أول فحص.</p></div></div></section>
+    <footer>WADAH NETWORK SCANNER <span>•</span> نسخة أولية — افحص الأنظمة المصرح بها فقط.</footer>
+  </main>
+</div><script src="{{ url_for('static', filename='app.js') }}"></script>
+</body></html>
